@@ -7,11 +7,9 @@ import java.util.List;
 
 public class EntityHandler {
 
-	private float g;
 	private List<Entity> entities;
 	
-	public EntityHandler(float g) {
-		this.g = g;
+	public EntityHandler() {
 		entities = new ArrayList<Entity>();
 	}
 	
@@ -23,7 +21,6 @@ public class EntityHandler {
 		Iterator<Entity> it = entities.iterator();
 		while (it.hasNext()) {
 			Entity e = it.next();
-			e.dy += g;
 			e.tick();
 			if (e.isDead()) {
 				it.remove();

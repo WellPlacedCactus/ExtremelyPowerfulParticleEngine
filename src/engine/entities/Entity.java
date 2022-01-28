@@ -2,8 +2,8 @@ package engine.entities;
 
 import java.awt.Color;
 import java.awt.Graphics;
-
-import engine.Engine;
+import java.awt.Graphics2D;
+import java.awt.geom.Rectangle2D;
 
 public class Entity {
 
@@ -14,21 +14,25 @@ public class Entity {
 	public float w;
 	public float h;
 	public float c;
-	public float dx;
-	public float dy;
+	public float d;
+	public float m;
 	public float dwh;
 	public float dc;
+	public float dd;
+	public float dm;
 	
-	public Entity(float x, float y, float w, float h, float c, float dx, float dy, float dwh, float dc) {
+	public Entity(float x, float y, float w, float h, float c, float d, float m, float dwh, float dc, float dd, float dm) {
 		this.x = x;
 		this.y = y;
 		this.w = w;
 		this.h = h;
 		this.c = c;
-		this.dx = dx;
-		this.dy = dy;
+		this.d = d;
+		this.m = m;
 		this.dwh = dwh;
 		this.dc = dc;
+		this.dd = dd;
+		this.dm = dm;
 	}
 	
 	private void die() {
@@ -37,20 +41,10 @@ public class Entity {
 	
 	public void tick() {
 		
-		// MOVE X //
+		// MOVE //
 		
-		x += dx;
-		
-		// MOVE Y AND BOUNCE OFF THE FLOOR //
-		
-		y += dy;
-		
-		if (dy > 0) {
-			if (y + h > Engine.HEIGHT) {
-				dy *= -1;
-				y = Engine.HEIGHT - h;
-			}
-		}
+		x += m * Math.cos(d);
+		y += m * Math.sin(d);
 		
 		// RESIZE AND DIE IF TOO SMALL //
 		
@@ -62,15 +56,25 @@ public class Entity {
 		// CHANGE COLOR //
 		
 		c += dc;
+		
+		// SCALE VECTORS AND DIE IF TOO SLOW //
+		
+		d += dd;
+		m += dm;
+		
+		if (m < 0) die();
 	}
 	
 	public void draw(Graphics g) {
-		g.setColor(Color.getHSBColor(c * 0.01f, 1, 1));
-		g.fillRect(
-			(int) (x - w / 2),
-			(int) (y - h / 2),
-			(int) w,
-			(int) h);
+		Rectangle2D.Float rect = new Rectangle2D.Float(
+			x - w / 2,
+			y - h / 2,
+			w,
+			h
+		);
+		Graphics2D g2d = (Graphics2D) g;
+		g2d.setColor(Color.getHSBColor(c, 1, 1));
+		g2d.fill(rect);
 	}
 	
 	public boolean isDead() {
