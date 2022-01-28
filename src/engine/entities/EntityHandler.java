@@ -7,10 +7,10 @@ import java.util.List;
 
 public class EntityHandler {
 
-	private int g;
+	private float g;
 	private List<Entity> entities;
 	
-	public EntityHandler(int g) {
+	public EntityHandler(float g) {
 		this.g = g;
 		entities = new ArrayList<Entity>();
 	}

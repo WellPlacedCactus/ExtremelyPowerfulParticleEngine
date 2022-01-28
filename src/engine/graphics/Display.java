@@ -6,6 +6,9 @@ import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
+import engine.input.Keyboard;
+import engine.input.Mouse;
+
 public class Display {
 
 	private JFrame frame;
@@ -20,6 +23,8 @@ public class Display {
 		this.title = title;
 		createFrame();
 		createCanvas();
+		addMouseInput();
+		addKeyInput();
 	}
 	
 	private void createFrame() {
@@ -37,6 +42,18 @@ public class Display {
 		frame.pack();
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
+	}
+	
+	private void addMouseInput() {
+		Mouse mouse = new Mouse();
+		canvas.addMouseListener(mouse);
+		canvas.addMouseMotionListener(mouse);
+	}
+	
+	private void addKeyInput() {
+		Keyboard keys = new Keyboard();
+		frame.addKeyListener(keys);
+		canvas.addKeyListener(keys);
 	}
 	
 	public JFrame getFrame() {

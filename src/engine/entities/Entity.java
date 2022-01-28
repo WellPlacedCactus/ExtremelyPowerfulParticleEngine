@@ -9,17 +9,17 @@ public class Entity {
 
 	private boolean dead = false;
 	
-	public int x;
-	public int y;
-	public int w;
-	public int h;
-	public int c;
-	public int dx;
-	public int dy;
-	public int dwh;
-	public int dc;
+	public float x;
+	public float y;
+	public float w;
+	public float h;
+	public float c;
+	public float dx;
+	public float dy;
+	public float dwh;
+	public float dc;
 	
-	public Entity(int x, int y, int w, int h, int c, int dx, int dy, int dwh, int dc) {
+	public Entity(float x, float y, float w, float h, float c, float dx, float dy, float dwh, float dc) {
 		this.x = x;
 		this.y = y;
 		this.w = w;
@@ -66,7 +66,11 @@ public class Entity {
 	
 	public void draw(Graphics g) {
 		g.setColor(Color.getHSBColor(c * 0.01f, 1, 1));
-		g.fillRect(x, y, w, h);
+		g.fillRect(
+			(int) (x - w / 2),
+			(int) (y - h / 2),
+			(int) w,
+			(int) h);
 	}
 	
 	public boolean isDead() {

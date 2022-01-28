@@ -2,10 +2,12 @@ package engine;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferStrategy;
 
 import demos.Demo;
 import engine.graphics.Display;
+import engine.input.Keyboard;
 
 public class Engine implements Runnable {
 
@@ -31,6 +33,11 @@ public class Engine implements Runnable {
 	}
 	
 	public void tick() {
+		
+		if (Keyboard.keys[KeyEvent.VK_ESCAPE]) {
+			stop("Keyboard Escape");
+		}
+		
 		demo.tick();
 	}
 	
@@ -57,13 +64,13 @@ public class Engine implements Runnable {
 	}
 	
 	public synchronized void stop(String error) {
+		System.out.println(error);
+		System.exit(0);
 		try {
 			thread.join();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(error);
-		System.exit(0);
 	}
 	
 	public void run() {
