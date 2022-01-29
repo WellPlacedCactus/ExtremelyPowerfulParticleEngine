@@ -13,7 +13,7 @@ public class Engine implements Runnable {
 
 	public static final int WIDTH = 1280;
 	public static final int HEIGHT = 720;
-	public static final String TITLE = "PhysicsEngine";
+	public static final String TITLE = "ExtremelyPowerfulParticleEngine";
 	
 	private Display display;
 	private Thread thread;

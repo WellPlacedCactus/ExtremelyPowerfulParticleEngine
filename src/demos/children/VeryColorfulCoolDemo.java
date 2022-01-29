@@ -17,7 +17,7 @@ public class VeryColorfulCoolDemo extends Demo {
 	
 	private void emit() {
 		if (Mouse.down) {
-			for (int i = 0; i < 100; i++) {
+			for (int i = 0; i < 500; i++) {
 				handler.add(new Entity(
 					Mouse.x,
 					Mouse.y,
@@ -28,7 +28,7 @@ public class VeryColorfulCoolDemo extends Demo {
 					5,
 					-0.1f,
 					0.01f,
-					0,
+					(float) (0.05 * Math.random()),
 					(float) (-0.05 * Math.random())
 				));
 			}
