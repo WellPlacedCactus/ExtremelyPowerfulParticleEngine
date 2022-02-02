@@ -1,11 +1,11 @@
 package test;
 
-import demos.children.VeryColorfulCoolDemo;
+import demos.children.DemoB;
 import engine.Engine;
 
 public class Implementation {
 
 	public static void main(String agrs[]) {
-		 new Engine(new VeryColorfulCoolDemo());
+		 new Engine(new DemoB());
 	}
 }
